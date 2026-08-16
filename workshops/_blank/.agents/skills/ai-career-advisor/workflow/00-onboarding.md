@@ -1,5 +1,7 @@
 # 00 — Onboarding / source validation
 
+> **Interaction:** This file defines *what evidence to seek*, not a batch job. Obey `SKILL.md` PRIMARY INTERACTION CONTRACT — end discovery turns with ONE question, then STOP.
+
 Exact **session entry** + optional documents. Orchestrator rules in `SKILL.md` (Activation, Conversation mode) always apply.
 
 **Production procedure** for start UX:

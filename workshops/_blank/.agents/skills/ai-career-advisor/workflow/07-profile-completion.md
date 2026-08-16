@@ -1,5 +1,7 @@
 # 07 — Profile completion
 
+> **Interaction:** This file defines *what evidence to seek*, not a batch job. Obey `SKILL.md` PRIMARY INTERACTION CONTRACT — end discovery turns with ONE question, then STOP.
+
 Close the **Verified Career Profile** (database ready for CV planning) — still **not** the final CV.
 
 Obey `SKILL.md` Conversation mode.  

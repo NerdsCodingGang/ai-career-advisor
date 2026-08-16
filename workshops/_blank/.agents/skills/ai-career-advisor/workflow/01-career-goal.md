@@ -1,5 +1,7 @@
 # 01 — Career goal
 
+> **Interaction:** This file defines *what evidence to seek*, not a batch job. Obey `SKILL.md` PRIMARY INTERACTION CONTRACT — end discovery turns with ONE question, then STOP.
+
 Establish **where they are** and **what they’re aiming for** — without skill discovery, achievements, market research, or CV drafting.
 
 Obey `SKILL.md` Conversation mode. Schema: `candidate/career-goal.yaml`.

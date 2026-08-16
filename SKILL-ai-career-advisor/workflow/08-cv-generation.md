@@ -1,5 +1,7 @@
 # 08 — CV generation
 
+> **Interaction:** Obey `SKILL.md` — companion voice; **CV CANNOT IMPROVE THE TRUTH**. No stage menus; no inventing evidence for ATS fit.
+
 Exact procedure: **gate → load cv-plan → fetch only confirmed data → write final CV → nothing outside Career Database.**
 
 ```text

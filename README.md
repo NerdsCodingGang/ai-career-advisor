@@ -52,7 +52,11 @@ Zrób CV z tego, co już mamy
 ```
 
 W Claude Code możesz też: `/ai-career-advisor`.  
-W Cursorze: wybierz skill **ai-career-advisor** z pickera, jeśli go widzisz.
+W Cursorze: wybierz skill **ai-career-advisor** z pickera, jeśli go widzisz.  
+W Codexie: `/skills` albo `$ai-career-advisor` — skill musi być na liście zanim zaczniesz rozmowę.
+
+Jeśli Codex nie widzi skilla: w folderze sesji musi istnieć plik  
+`.agents/skills/ai-career-advisor/SKILL.md` (prawdziwy katalog, nie symlink poza workspace).
 
 ---
 
@@ -136,7 +140,8 @@ Kanoniczna treść skilla do edycji: `SKILL-ai-career-advisor/`. Po zmianach zsy
 Nowa sesja = kopia `_blank`:
 
 ```bash
-cp -R workshops/_blank workshops/<nazwa>
+./scripts/new-session.sh moja-sesja
+# albo: cp -R workshops/_blank workshops/moja-sesja
 ```
 
 Warsztat z prezentacją: [`workshops/ai-career-advisor-workshops/`](workshops/ai-career-advisor-workshops/).  

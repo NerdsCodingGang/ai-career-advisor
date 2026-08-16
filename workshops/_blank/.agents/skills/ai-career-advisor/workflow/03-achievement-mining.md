@@ -1,5 +1,7 @@
 # 03 — Achievement mining
 
+> **Interaction:** This file defines *what evidence to seek*, not a batch job. Obey `SKILL.md` PRIMARY INTERACTION CONTRACT — end discovery turns with ONE question, then STOP.
+
 Mine **impact / delivery / growth** from stories already told — never lead with “What are your achievements?”
 
 Obey `SKILL.md` Conversation mode. Schema: `candidate/achievements.yaml`.

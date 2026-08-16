@@ -1,5 +1,7 @@
 # 05 — Competency grilling (Pass 2)
 
+> **Interaction:** This file defines *what evidence to seek*, not a batch job. Obey `SKILL.md` PRIMARY INTERACTION CONTRACT — end discovery turns with ONE question, then STOP.
+
 Return to experiences **with market hypotheses** — name what they may already do but didn’t label.
 
 Obey `SKILL.md` Conversation mode.  

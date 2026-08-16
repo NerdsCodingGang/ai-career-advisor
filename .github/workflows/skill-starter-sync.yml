@@ -1,0 +1,34 @@
+---
+name: Check skill starter sync
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "SKILL-ai-career-advisor/**"
+      - "workshops/_blank/.agents/skills/ai-career-advisor/**"
+      - "scripts/sync-skill-to-starter.sh"
+      - ".github/workflows/skill-starter-sync.yml"
+  pull_request:
+    paths:
+      - "SKILL-ai-career-advisor/**"
+      - "workshops/_blank/.agents/skills/ai-career-advisor/**"
+      - "scripts/sync-skill-to-starter.sh"
+      - ".github/workflows/skill-starter-sync.yml"
+  workflow_dispatch:
+
+jobs:
+  sync-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ensure starter skill matches canonical
+        run: |
+          set -euo pipefail
+          ./scripts/sync-skill-to-starter.sh
+          if ! git diff --quiet -- workshops/_blank/.agents/skills/ai-career-advisor workshops/_blank/.claude/skills/ai-career-advisor; then
+            echo "::error::Starter skill is out of sync with SKILL-ai-career-advisor/. Run ./scripts/sync-skill-to-starter.sh and commit."
+            git diff --stat -- workshops/_blank/.agents/skills/ai-career-advisor workshops/_blank/.claude/skills/ai-career-advisor
+            exit 1
+          fi
+          echo "Starter skill is in sync."

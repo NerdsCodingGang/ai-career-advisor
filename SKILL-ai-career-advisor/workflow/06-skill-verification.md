@@ -1,5 +1,7 @@
 # 06 — Skill verification (tables + coverage)
 
+> **Interaction:** This file defines *what evidence to seek*, not a batch job. Obey `SKILL.md` PRIMARY INTERACTION CONTRACT — end discovery turns with ONE question, then STOP.
+
 Wide **coverage check** after grilling — not a second archaeology pass.
 
 Obey `SKILL.md` Conversation mode. Schema: `candidate/skills.yaml`.  

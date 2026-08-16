@@ -19,6 +19,9 @@ zrób CV z tego, co już mamy pod rolę X
 
 Workspace = folder sesji (`workshops/moja-sesja`), nie root całego repo.
 
+**Codex:** `/skills` albo `$ai-career-advisor` — skill musi być widoczny.  
+W sesji: `.agents/skills/ai-career-advisor/SKILL.md` (kopia lokalna, nie symlink poza folder).
+
 ---
 
 ## Łańcuch (zapamiętaj)

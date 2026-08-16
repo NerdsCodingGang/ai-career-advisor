@@ -1,5 +1,7 @@
 # 02 — Career archaeology (Pass 1)
 
+> **Interaction:** This file defines *what evidence to seek*, not a batch job. Obey `SKILL.md` PRIMARY INTERACTION CONTRACT — end discovery turns with ONE question, then STOP.
+
 **Evidence collection** for ~5 most important / recent experiences — not skill confirmation, not achievements questionnaire, not CV writing.
 
 Obey `SKILL.md` Conversation mode.  

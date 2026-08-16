@@ -26,9 +26,11 @@ workshops/
 ```
 
 ```bash
-cp -R workshops/_blank workshops/moja-sesja
+./scripts/new-session.sh moja-sesja
+# albo: cp -R workshops/_blank workshops/moja-sesja
 ```
 
-Otwórz **folder sesji** w Cursor / Claude / Codex, potem: `uruchom AI Career Advisor`.
+Otwórz **folder sesji** w Cursor / Claude / Codex, potem: `uruchom AI Career Advisor`.  
+Codex: `/skills` albo `$ai-career-advisor`.
 
 Nie trzymaj w publicznym gicie prawdziwych danych osobowych ani sekretów.

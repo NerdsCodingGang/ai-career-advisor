@@ -30,6 +30,8 @@
 
 ## Komunikaty awaryjne
 
-- Agent nie widzi skilla → sprawdź, że otwarty jest folder sesji (`_blank` / kopia), nie root monorepo.
+- Agent nie widzi skilla → otwarty ma być **folder sesji** (`workshops/<nazwa>`), nie root monorepo.
+- Codex: `/skills` / `$ai-career-advisor`. Brak na liście → sprawdź, że `.agents/skills/ai-career-advisor/SKILL.md` to **plik w sesji** (nie symlink do katalogu obok / rootu repo).
 - Gate CV nie puszcza → na warsztacie i tak poproś o `cv-plan` + roboczy CV; pełne flagi domknąć w domu.
 - Cisza w archaeology → podpowiedz: „Co robisz w typowym tygodniu? Co było Twoje vs zespołu?”
+- Agent kończy turę menu „mogę teraz zrobić 1/2/3” albo grzebie w YAML → nowy chat + jawne `$ai-career-advisor`; przypomnij: jedno pytanie, STOP.

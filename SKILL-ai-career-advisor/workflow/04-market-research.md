@@ -1,5 +1,7 @@
 # 04 — Market research (competency mirror)
 
+> **Interaction:** This file defines *what evidence to seek*, not a batch job. Obey `SKILL.md` PRIMARY INTERACTION CONTRACT — end discovery turns with ONE question, then STOP.
+
 **Not** job search. Live postings exist to form **hypotheses** and better questions about the candidate.
 
 Obey `SKILL.md` Conversation mode. Schema: `candidate/market-research.yaml`.  
