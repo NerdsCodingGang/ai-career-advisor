@@ -9,7 +9,7 @@ Przykłady i przestrzenie robocze.
 | [AI Career Advisor Workshops](ai-career-advisor-workshops/) | ~3 h | [Slajdy (Slidev)](ai-career-advisor-workshops/slides/) · [Cheatsheet](ai-career-advisor-workshops/PARTICIPANT-CHEATSHEET.md) · [Facylitator](ai-career-advisor-workshops/FACILITATOR.md) |
 
 Slajdy lokalnie: `cd workshops/ai-career-advisor-workshops/slides && npm i && npm run dev`  
-Po skonfigurowaniu GitHub Pages: URL z workflow `workshop-slides.yml`.
+Slajdy online: [GitHub Pages](https://nerdscodinggang.github.io/ai-career-advisor/).
 
 ## Sesje uczestników
 

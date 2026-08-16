@@ -35,8 +35,8 @@ jobs:
         run: npm install
       - name: Build Slidev
         env:
-          # Project Pages: https://<user>.github.io/<repo>/ai-career-advisor-workshops/
-          BASE_PATH: /${{ github.event.repository.name }}/ai-career-advisor-workshops/
+          # Project Pages site root: https://<user>.github.io/<repo>/
+          BASE_PATH: /${{ github.event.repository.name }}/
         run: npx slidev build slides.md --base "$BASE_PATH"
       - uses: actions/upload-pages-artifact@v3
         with:

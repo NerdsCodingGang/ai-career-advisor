@@ -18,7 +18,7 @@ Nie wypełniasz formularza. Mówisz o swojej pracy — agent zapisuje fakty w ba
 ### 1. Sklonuj repo
 
 ```bash
-git clone <REPO_URL>
+git clone https://github.com/NerdsCodingGang/ai-career-advisor.git
 cd ai-career-advisor
 ```
 
@@ -132,7 +132,8 @@ Nowa sesja = kopia `_blank`:
 cp -R workshops/_blank workshops/<nazwa>
 ```
 
-Warsztat z prezentacją: [`workshops/ai-career-advisor-workshops/`](workshops/ai-career-advisor-workshops/).
+Warsztat z prezentacją: [`workshops/ai-career-advisor-workshops/`](workshops/ai-career-advisor-workshops/).  
+Slajdy online (GitHub Pages): [nerdscodinggang.github.io/ai-career-advisor/](https://nerdscodinggang.github.io/ai-career-advisor/).
 
 ---
 
@@ -141,3 +142,4 @@ Warsztat z prezentacją: [`workshops/ai-career-advisor-workshops/`](workshops/ai
 - Skill (dla agenta): [`SKILL-ai-career-advisor/SKILL.md`](SKILL-ai-career-advisor/SKILL.md)
 - Start UX: [`SKILL-ai-career-advisor/workflow/00-onboarding.md`](SKILL-ai-career-advisor/workflow/00-onboarding.md)
 - Workshops: [`workshops/README.md`](workshops/README.md)
+- Slajdy online: [GitHub Pages](https://nerdscodinggang.github.io/ai-career-advisor/)

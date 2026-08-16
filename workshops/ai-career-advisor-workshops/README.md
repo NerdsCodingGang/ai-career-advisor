@@ -47,13 +47,9 @@ npm run build
 
 ## Slajdy na GitHub Pages
 
-Po pushu na `main` (workflow w repo) deck będzie pod:
+Po pushu na `main` (workflow w repo) i włączeniu **Settings → Pages → Source: GitHub Actions**:
 
-```text
-https://<org-or-user>.github.io/<repo>/ai-career-advisor-workshops/
-```
-
-(dokładny URL zależy od nazwy repo — wpisz tu po pierwszym deployu).
+[https://nerdscodinggang.github.io/ai-career-advisor/](https://nerdscodinggang.github.io/ai-career-advisor/)
 
 ## Sesja uczestnika
 
