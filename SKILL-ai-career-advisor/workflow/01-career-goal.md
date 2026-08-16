@@ -67,6 +67,8 @@ Update `profile.yaml`:
 Handoff (PL example):  
 > Jasne — celujemy w [ich słowa]. Teraz przejdziemy przez doświadczenia, żeby wydobyć, co naprawdę robiłaś.
 
+Then immediately ask the **first archaeology question** about the most current / relevant role (load `workflow/02-career-archaeology.md`) — do **not** pause to invent positioning products.
+
 Load `workflow/02-career-archaeology.md`.
 
 ---
@@ -92,3 +94,5 @@ Load `workflow/02-career-archaeology.md`.
 - Related roles without reasons  
 - Jumping to market, achievements, or CV  
 - Exposing YAML paths  
+- Positioning axes / “why me” / “czego nie podkreślać” after they pick a target — that is **not** stage 01  
+- Offering a menu of coaching deliverables instead of moving to archaeology with one handoff line + first experience question  

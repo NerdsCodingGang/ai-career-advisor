@@ -52,7 +52,8 @@ For focus id: index `discovery.archaeology: IN_PROGRESS`.
 - Seed → `seed`; working truth → `header` / evidence after confirmation  
 - Conflicts → `conflicts[]`; user overrides stale doc; unsure → follow-up / DISPUTED path  
 - `competency_evidence`: set `fact_status` / `heard_from`; leave agency×capability unknown unless clearly stated  
-- Do **not** CONFIRMED skills from CV alone; do **not** manufacture achievements (stage 03)
+- Do **not** CONFIRMED skills from CV alone; do **not** manufacture achievements (stage 03)  
+- Do **not** autofill `scope` / `contribution` / `ownership` / `observed_scope` by rewriting document text into structured prose. Ask; then write what they said.
 
 **COMPLETE this role when** `passes.archaeology.coverage` is honest enough:
 
@@ -101,3 +102,6 @@ Load `workflow/03-achievement-mining.md`.
 - Auto-seniority from title  
 - YAML paths to the user  
 - Rushing to market or CV mid-excavation  
+- Bulk-editing several role files in one turn without a new user answer  
+- Ending with a pipeline menu (“dokończyć archaeology / achievement mining / profil”)  
+- Treating empty role fields as autofill tasks instead of interview questions  
