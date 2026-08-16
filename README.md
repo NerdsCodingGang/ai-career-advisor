@@ -118,12 +118,19 @@ Więcej nawyków rozmowy: [`workshops/ai-career-advisor-workshops/PARTICIPANT-CH
 └── .gitignore
 ```
 
-W folderze sesji są też skróty (symlinki), dzięki którym Cursor / Claude / Codex **same znajdują** skill:
+W folderze sesji skill leży **jako prawdziwe pliki** (nie symlink poza workspace):
 
 ```text
-.agents/skills/…  → Cursor / Codex
-.claude/skills/…  → Claude Code
-oba wskazują na SKILL-ai-career-advisor/
+.agents/skills/ai-career-advisor/   # Cursor / Codex — kopia skilla w starterze
+.claude/skills/ai-career-advisor/   # Claude Code — symlink *wewnątrz* sesji → .agents/...
+```
+
+Dlaczego kopia: gdy otwierasz sam folder sesji, sandbox (np. Codex) nie może czytać symlinka do `SKILL-ai-career-advisor/` w rootcie repo (`Operation not permitted`).
+
+Kanoniczna treść skilla do edycji: `SKILL-ai-career-advisor/`. Po zmianach zsynchronizuj starter:
+
+```bash
+./scripts/sync-skill-to-starter.sh
 ```
 
 Nowa sesja = kopia `_blank`:

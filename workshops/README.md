@@ -17,12 +17,12 @@ Każda sesja = osobny folder z Career Database:
 
 ```text
 workshops/
-  _blank/                 # pusty starter (schematy)
+  _blank/                 # pusty starter (schematy + skill w .agents/)
   <twoj-workshop>/        # kopia _blank + Twoje dane
     candidate/
     outputs/
-    .agents/skills/…      # → SKILL-ai-career-advisor
-    .claude/skills/…
+    .agents/skills/ai-career-advisor/   # real files (Codex-safe)
+    .claude/skills/ai-career-advisor/   # in-session link → .agents/...
 ```
 
 ```bash
