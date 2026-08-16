@@ -1,0 +1,77 @@
+# candidate/open-questions.yaml
+# Phase 6 — grilling / discovery BACKLOG (not a script of ready-made questions).
+# FROZEN phase 6 (lean). Locked:
+#   - same file keeps OPEN…RESOLVED/DROPPED history
+#   - RESOLVED/DROPPED store outcome.summary + outcome.updated file paths (audit)
+#   - at most ONE item may be IN_PROGRESS in the whole file (one active thread)
+#   - queues/counts are NOT persisted — derive from items[] (single source of truth)
+#   - BLOCKED = rare; only for a specific already-formed deferred thread (see below)
+#
+# =============================================================================
+# SUPERORDINATE GOAL
+# =============================================================================
+# Store things that still need to be established — so the agent always picks the
+# highest-value next thread instead of "I asked one question, so I move on".
+#
+# Entries are TOPICS / GAPS, optionally with a suggested ask_angle.
+# They are NOT a rigid questionnaire the agent must read aloud in order.
+#
+# Prefer creating items only when they are askable (status OPEN).
+#
+# BLOCKED (rare — v0.1):
+#   = a ready topic with concrete ask_angle and/or links and a clear reason,
+#     which must not be touched yet but must be returned to later.
+#   Do NOT use BLOCKED for hypothetical topics that a later pipeline producer
+#     (market research, skill verification, …) will regenerate anyway.
+#   When dependencies are satisfied: BLOCKED → OPEN, then eligible for pick.
+#   blocked_by[] required while BLOCKED (stable refs).
+#
+# Pick next: only status=OPEN. Never start BLOCKED. Max one IN_PROGRESS.
+# =============================================================================
+
+schema_version: "0.1"
+
+meta:
+  status: NOT_STARTED             # NOT_STARTED | IN_PROGRESS | COMPLETE | BLOCKED
+  updated_at: null
+  # COMPLETE ≈ no OPEN HIGH/MEDIUM left for current stage (LOW/BLOCKED may remain)
+  notes: null
+
+items: []
+# - id: oq-terraform-depth
+#   topic: "Verify Terraform depth beyond document mention"
+#   priority: HIGH                # HIGH | MEDIUM | LOW
+#   status: OPEN                  # OPEN | IN_PROGRESS | RESOLVED | DROPPED | BLOCKED
+#
+#   why_it_matters: null
+#   ask_angle: null               # strongly expected if status=BLOCKED (formed thread)
+#
+#   origin: SKILLS                # EMPLOYMENT | SKILLS | MARKET | ACHIEVEMENTS
+#                                 # | SENIORITY | GOAL | SESSION | OTHER
+#   stage_relevance: []
+#
+#   blocked_by: []                # required when BLOCKED; stable refs only
+#     # - "career_goal.target_role"
+#     # - "oq-other-id"
+#     # - "pipeline.04-market-research"
+#
+#   links:
+#     experience_ids: []
+#     skill_ids: []
+#     market_skill_ids: []
+#     achievement_ids: []
+#     source_refs: []
+#
+#   outcome:                      # when RESOLVED or DROPPED
+#     summary: "Ownership confirmed as independent."
+#     updated:
+#       - candidate/employment/company-x-role.yaml
+#       - candidate/skills.yaml
+#   resolved_at: null
+#
+#   created_at: null
+#   updated_at: null
+
+# Derived views — DO NOT persist.
+# Recompute from items[]: OPEN by priority, BLOCKED, counts by status.
+# Single source of truth: items[]

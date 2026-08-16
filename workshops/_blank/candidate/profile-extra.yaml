@@ -1,0 +1,88 @@
+# candidate/profile-extra.yaml
+# Phase 7a — FROZEN (lean). Late-profile facts only.
+# Only data that do NOT belong in employment / skills / seniority / session.
+#
+# INCLUDES (lean):
+#   optional identity (display_name, city_country only), public professional links,
+#   education, certifications, courses/workshops, languages, AI approach, interests
+#
+# EXCLUDES (GDPR minimize — do not store):
+#   private phone, private email, street address, national id, exact DOB, etc.
+#   seniority, target role, skills, CV prose, pipeline/session, employment evidence
+#   remote / work-mode preference → career-goal.yaml work_preferences (not identity)
+#
+# Identity is OPTIONAL. Local skill users may fill it for a better companion/CV
+# effect; leave null for workshops, demos, or privacy. CV may use
+# [FIRST NAME LAST NAME] / city_country only when set.
+
+schema_version: "0.1"
+
+meta:
+  status: NOT_STARTED             # NOT_STARTED | IN_PROGRESS | COMPLETE | SKIPPED
+  updated_at: null
+  notes: null
+
+# Optional — null is fine (GDPR: minimize; no phone/email/street address).
+# display_name / city often public on LinkedIn — still not required.
+# Do NOT store remote here — that is target/work preference (career-goal).
+# CV line like "Rzeszów, Poland (Remote)" is composed at output time from
+# city_country + career-goal work_preferences.remote (ask cv_language for Remote vs praca zdalna).
+identity:
+  display_name: null
+  city_country: null              # e.g. "Rzeszów, Poland" — location fact only
+  cv_language: null               # pl | en | null — null ⇒ ask before CV generation
+
+# Public professional profiles — fine to store: already public by nature.
+# Prefer dedicated keys for common platforms; use other[] for the rest.
+public_links:
+  linkedin: null
+  github: null
+  gitlab: null
+  portfolio: null                 # personal site
+  dribbble: null
+  behance: null
+  other: []                       # [{label, url}] e.g. Softpedia, Hugging Face, blog
+
+education: []
+# - id: edu-1
+#   institution: null
+#   degree_or_program: null
+#   field: null
+#   start_year: null
+#   end_year: null
+#   notes: null
+#   confirmed_with_user: false
+#   source_refs: []
+
+certifications: []
+# - id: cert-1
+#   name: null
+#   issuer: null
+#   year: null
+#   url_or_credential_id: null
+#   confirmed_with_user: false
+#   source_refs: []
+
+# Selected courses / workshops (≠ formal certifications) — for OPTIONAL OTHER on CV
+courses: []
+# - id: course-1
+#   name: null                   # e.g. Software Testing Masterclass
+#   provider: null                # Udemy | Eduweb | …
+#   year: null
+#   topics: []                    # short labels if useful on CV
+#   confirmed_with_user: false
+#   source_refs: []
+
+languages: []
+# - language: null
+#   level: null                   # native | C2 | C1 | B2 | B1 | A2 | A1 | working | unknown
+#   confirmed_with_user: false
+
+ai_approach:
+  summary: null
+  tools_used: []
+  uses_in_workflow: null
+  boundaries: null
+  confirmed_with_user: false
+
+interests: []

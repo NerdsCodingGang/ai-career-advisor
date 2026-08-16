@@ -1,0 +1,16 @@
+# candidate/sources/index.yaml
+# Starting documents registry (CV, LinkedIn PDF, …). Never automatic truth.
+# Freshness / CURRENT|STALE|PARTIALLY_CURRENT lives here (detail for onboarding).
+
+schema_version: "0.1"
+
+sources: []
+# - id: cv-2024
+#   type: cv | linkedin_pdf | other
+#   path: null                    # local path or attachment ref
+#   received_at: null
+#   freshness: UNKNOWN            # CURRENT | STALE | PARTIALLY_CURRENT | UNKNOWN
+#   freshness_notes: null         # e.g. role still current? post-doc updates?
+#   used_as_seed_only: true
+
+notes: null

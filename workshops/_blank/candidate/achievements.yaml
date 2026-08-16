@@ -1,0 +1,113 @@
+# candidate/achievements.yaml
+# Phase 5 — achievement mining FROM EVIDENCE (not an achievement questionnaire).
+# FROZEN phase 5 (discover, do not manufacture).
+#
+# =============================================================================
+# SUPERORDINATE GOAL
+# =============================================================================
+# Extract impact evidence from things the user already described — even when they
+# do not call them "achievements".
+#
+# NEVER lead with: "What are your achievements?"
+#
+# HARD RULE (locked):
+#   Achievements are DISCOVERED, not MANUFACTURED.
+#   A valid competency does NOT require a matching achievement.
+#   Especially for juniors: solid CV can rest on real skills, independence, and
+#   delivered work without spectacular impact stories.
+#
+# =============================================================================
+# DO NOT FORCE SUCCESS STORIES
+# =============================================================================
+# Technology / project mention ≠ achievement.
+#
+#   "I worked with the payments provider."
+#       → competency signal only
+#       → calm clarify: "What exactly did you do on that payments integration?"
+#
+#   "I wired payments and handled webhooks."
+#       → still mainly competence evidence (agency/capability in employment/skills)
+#       → optional ONE before/after probe — only if contribution is clear
+#
+#   "I fixed bad callback handling because some payments were falling into manual ops."
+#       → potential IMPACT achievement candidate
+#
+# Pipeline (mandatory order):
+#   user mentions something
+#        ↓
+#   clear personal contribution?
+#        ↓
+#   YES → optionally ask what changed / what was delivered
+#   NO  → keep as competency evidence; NOT an achievement
+#        ↓
+#   real impact / delivery / growth emerged?
+#        ↓
+#   YES → achievement candidate
+#   NO  → STOP. Do not force a story.
+#
+# If after ONE sensible follow-up no impact emerges → drop it.
+# Not every skill, project, or task needs an achievement.
+#
+# NEVER invent metrics. No numbers the user did not state.
+# =============================================================================
+# THREE TYPES
+# =============================================================================
+# IMPACT   — improved a result / system / process
+# DELIVERY — built, shipped, migrated, delivered something material
+# GROWTH   — independence, larger scope, mentoring, ownership, reliance
+# =============================================================================
+
+schema_version: "0.1"
+
+meta:
+  status: NOT_STARTED             # NOT_STARTED | IN_PROGRESS | COMPLETE | BLOCKED
+  updated_at: null
+  notes: null
+  # COMPLETE ≠ every tech has an achievement.
+  # COMPLETE ≈ where stories suggested change, before/after was probed;
+  #            forced manufacturing was avoided.
+
+achievements: []
+# - id: example-corp-payments-callback-fix
+#   type: IMPACT                    # IMPACT | DELIVERY | GROWTH
+#   secondary_types: []
+#
+#   experience_ids: []
+#   skill_ids: []                   # optional; competency can exist with zero achievements
+#   open_question_ids: []
+#
+#   before: null
+#   action: null                    # their contribution (not the whole team)
+#   after: null
+#
+#   metrics:
+#     user_stated: []
+#     invented: false               # MUST stay false
+#
+#   how_found: STORY_MINING         # STORY_MINING | USER_OFFERED | DOCUMENT_SEED
+#   confirmation: PARTIAL           # UNCONFIRMED | PARTIAL | CONFIRMED
+#   source_refs: []
+#
+#   # Mining discipline
+#   contribution_clear: true        # must be true to be an achievement candidate
+#   followups_used: 1               # keep ≤1 impact probe unless user volunteers more
+#   forced: false                   # MUST stay false — manufactured stories forbidden
+#
+#   title: null                     # short label; not final CV prose
+#   notes: null
+
+# Probes that STOPPED (optional audit — proves we did not manufacture)
+declined_or_no_impact: []
+# - experience_id: null
+#   mention: "worked with the payments provider"
+#   reason: NO_IMPACT_AFTER_FOLLOWUP  # NO_CLEAR_CONTRIBUTION | NO_IMPACT_AFTER_FOLLOWUP | USER_DECLINED
+#   kept_as: COMPETENCY_EVIDENCE_ONLY
+
+by_experience: {}
+
+counts:
+  total: 0
+  by_type: {}
+  confirmed: 0
+  without_metrics: 0
+  no_impact_stops: 0              # healthy signal — mining knew when to stop

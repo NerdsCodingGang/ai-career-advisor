@@ -1,0 +1,32 @@
+# candidate/career-goal.yaml
+# Career goal + work preferences (not full skill discovery).
+# Filled mainly in workflow/01-career-goal.md.
+
+schema_version: "0.1"
+
+meta:
+  status: NOT_STARTED             # NOT_STARTED | IN_PROGRESS | COMPLETE | BLOCKED
+  updated_at: null
+  notes: null
+
+current:
+  role_title: null
+  status: null                    # employed | freelancing | between_roles | studying | other
+  summary: null                   # short — what they do now
+
+seeking:
+  summary: null                   # what they want next (plain language)
+  target_roles: []                # [{title, notes}]
+  target_tracks: []               # optional slugs aligning with seniority.yaml track_id
+  specialization_change: null     # true | false | unclear
+  industry_change: null           # true | false | unclear
+  related_roles: []
+  # - title: null
+  #   reason: null                  # evidence-based — required if listed
+  #   confidence: UNKNOWN           # HIGH | MEDIUM | LOW | UNKNOWN
+
+work_preferences:
+  remote: null                    # true | false | null — CV "(Remote)" / "(praca zdalna)" at output
+  other: null
+
+seniority_aspiration: null        # optional hint only — not estimated_level (see seniority.yaml)

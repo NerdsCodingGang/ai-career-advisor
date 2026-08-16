@@ -1,0 +1,53 @@
+---
+name: Deploy workshop slides
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "workshops/ai-career-advisor-workshops/slides/**"
+      - ".github/workflows/workshop-slides.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-workshop-slides
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: workshops/ai-career-advisor-workshops/slides
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: workshops/ai-career-advisor-workshops/slides/package.json
+      - name: Install
+        run: npm install
+      - name: Build Slidev
+        env:
+          # Project Pages: https://<user>.github.io/<repo>/ai-career-advisor-workshops/
+          BASE_PATH: /${{ github.event.repository.name }}/ai-career-advisor-workshops/
+        run: npx slidev build slides.md --base "$BASE_PATH"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: workshops/ai-career-advisor-workshops/slides/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

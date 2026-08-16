@@ -1,0 +1,94 @@
+# 01 — Career goal
+
+Establish **where they are** and **what they’re aiming for** — without skill discovery, achievements, market research, or CV drafting.
+
+Obey `SKILL.md` Conversation mode. Schema: `candidate/career-goal.yaml`.
+
+```text
+current situation + seeking direction  →  enough to choose which experiences to excavate
+```
+
+---
+
+## Procedure (mandatory order)
+
+### 1. Enter stage
+
+- Confirm `00` complete / `source_intake_resolved` (or EXISTING session continuing here).
+- Set `session.current_stage` → `01-career-goal`, `progress."01-career-goal": IN_PROGRESS`.
+- Read `career-goal.yaml` (may be empty).
+
+### 2. Establish current situation
+
+Ask (one topic per turn) until clear:
+
+| Field | Capture |
+|-------|---------|
+| `current.role_title` | What they do / last role title (their words) |
+| `current.status` | employed \| freelancing \| between_roles \| studying \| other |
+| `current.summary` | Short plain-language “what I do now” |
+
+Document seeds = hints only (“W CV jest X — czy to nadal aktualne?”).
+
+### 3. Establish seeking
+
+| Field | Capture |
+|-------|---------|
+| `seeking.summary` | What they want next (messy OK) |
+| `seeking.target_roles[]` | At least one `{title, notes}` they endorse — **do not invent** |
+| `seeking.target_tracks[]` | Optional slugs aligning with later seniority tracks |
+| `seeking.specialization_change` | true \| false \| unclear |
+| `seeking.industry_change` | true \| false \| unclear |
+
+### 4. Related roles (optional, disciplined)
+
+Only if useful for archaeology / market mirror later:
+
+- `seeking.related_roles[]` with **required** `reason` (evidence-based) and `confidence`
+- No sprawl list of titles “that might fit”
+
+### 5. Work preferences (optional, non-blocking)
+
+- `work_preferences.remote` → true \| false \| null  
+- Do not block exit on this; needed later for CV location line.
+
+### 6. Persist & exit
+
+Write `career-goal.yaml`:
+
+- `meta.status: COMPLETE` when `current` + usable `seeking` exist  
+- Prefer COMPLETE before archaeology (IN_PROGRESS only if user explicitly wants to refine later)
+
+Update `profile.yaml`:
+
+- `progress."01-career-goal": COMPLETE`
+- `current_stage` → `02-career-archaeology`, that progress `IN_PROGRESS`
+
+Handoff (PL example):  
+> Jasne — celujemy w [ich słowa]. Teraz przejdziemy przez doświadczenia, żeby wydobyć, co naprawdę robiłaś.
+
+Load `workflow/02-career-archaeology.md`.
+
+---
+
+## Read / Write
+
+**Read:** `profile.yaml`, `career-goal.yaml`; light source/employment labels if seeded.  
+**Write:** `career-goal.yaml`, `profile.yaml` stage/progress; optional `open-questions` only if a *formed* thread must wait on a clearer target.
+
+---
+
+## Exit checklist
+
+- [ ] Usable `current` + `seeking` (summary and/or ≥1 endorsed target role)  
+- [ ] No invented target roles  
+- [ ] Related roles have reasons (or list empty)  
+- [ ] `01` COMPLETE → `02` IN_PROGRESS  
+
+## Anti-patterns
+
+- Skill inventory / “rate yourself”  
+- Inventing targets they didn’t endorse  
+- Related roles without reasons  
+- Jumping to market, achievements, or CV  
+- Exposing YAML paths  

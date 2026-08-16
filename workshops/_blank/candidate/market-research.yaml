@@ -1,0 +1,134 @@
+# candidate/market-research.yaml
+# Phase 4 — external MIRROR for candidate competency discovery.
+# FROZEN phase 4.
+# Market exists to improve questions about the candidate — not research for its own sake.
+#
+# =============================================================================
+# SUPERORDINATE GOAL
+# =============================================================================
+# CANDIDATE EXPERIENCE + CURRENT JOB POSTINGS → COMPARE → HYPOTHESES
+# → "Did you also do this?" → later grilling / skills.yaml verification
+#
+# Two discovery modes (both valid):
+#   MARKET_PLUS_CANDIDATE_SIGNAL — market label maps to something already said
+#   MARKET_ONLY — common in similar jobs; candidate never mentioned it yet
+#                 (mirror_from_candidate may be null)
+#
+# Outbound to skills.yaml (tight rule):
+#   NEVER promote market evidence alone → CONFIRMED or PARTIAL
+#   MARKET_ONLY              → proposed_knowledge_status: UNKNOWN
+#   MARKET + candidate signal → proposed_knowledge_status: INFERRED
+#   Only candidate evidence / verification → PARTIAL or CONFIRMED
+#   NEVER set capability from market alone
+#
+# Prefer keeping MARKET_ONLY rows in this file until asked; promote to
+# skills.yaml when the agent actually queues them for conversation
+# (avoids flooding skills.yaml with market noise).
+#
+# When mirroring seniority: compare observed duties/scope to Regular/Mid JD
+# duties — NOT official title strings alone (see seniority.yaml).
+# =============================================================================
+
+schema_version: "0.1"
+
+meta:
+  status: NOT_STARTED             # NOT_STARTED | IN_PROGRESS | COMPLETE | BLOCKED
+  researched_at: null
+  blocked_reason: null
+  notes: null
+
+# --- Research scope ---
+scope:
+  current_roles: []               # [{title, market_label}]
+  target_roles: []                # [{title, market_label}]
+  related_roles: []
+  # - title: Platform Engineer
+  #   reason: "Backend work includes CI/CD, AWS infra, production ownership."
+  #   confidence: MEDIUM            # HIGH | MEDIUM | LOW
+  #   # Related roles MUST have evidence-based reason — no sprawl
+  geography_or_market: null
+  language_of_postings: null      # pl | en | mixed
+
+# --- Posting sample (~10–15 included when available). Quality > volume. ---
+sources:
+  postings: []
+  # - id: posting-001
+  #   role_bucket: target          # current | target | related
+  #   title_as_posted: null
+  #   company_or_board: null
+  #   url_or_ref: null
+  #   captured_at: null
+  #   notes: null
+  other_refs: []
+
+sample_quality:
+  included: 0                     # postings actually used in analysis
+  excluded: 0
+  exclusion_reasons: {}
+  # e.g. { wrong_seniority: 2, title_match_but_scope_mismatch: 3, insufficient_detail: 1 }
+
+# --- Normalize market wording → canonical ids ---
+normalization:
+  aliases: []
+  # - canonical_id: root_cause_analysis
+  #   aliases: ["RCA", "root cause analysis", "finding the root cause"]
+
+# --- Market Skill Base (market side of the mirror) ---
+market_skill_base: []
+# - id: root_cause_analysis
+#   name: Root Cause Analysis
+#   kind: PRACTICE
+#   role_buckets: [target]
+#   occurrence:
+#     postings_count: 0             # raw: in how many INCLUDED postings
+#     sample_size: 0                # raw: included sample size (same as sample_quality.included)
+#   frequency: unknown              # INTERPRETATION of occurrence: high | medium | low | unknown
+#   # Do not invent frequency without occurrence when counts exist
+#   requirement_shape: unknown
+#     # HOW postings present it: must_have | nice_to_have | mixed | unknown
+#   importance: unknown
+#     # OUR aggregate judgment for this market slice: critical | important | nice_to_have | unknown
+#     # Can diverge from requirement_shape, e.g. shape=mixed + importance=important
+#   typical_signals: []
+#   posting_ids: []
+
+# --- Hypotheses (THE product of Phase 4) ---
+skill_hypotheses: []
+# MARKET + candidate signal:
+# - market_skill_id: root_cause_analysis
+#   proposed_skills_yaml_id: root_cause_analysis
+#   hypothesis_origin: MARKET_PLUS_CANDIDATE_SIGNAL
+#     # MARKET_ONLY | MARKET_PLUS_CANDIDATE_SIGNAL
+#   proposed_knowledge_status: INFERRED
+#   mirror_from_candidate:
+#     "When incidents happened, checked logs to identify where the problem originated."
+#   experience_ids_to_probe: [company-x-backend-engineer]
+#   ask_angle:
+#     "When you found the immediate problem, did you also investigate why it happened
+#      and how to stop it recurring?"
+#   priority: HIGH
+#   promoted_to_skills_yaml: false
+#
+# MARKET only (null mirror is legal):
+# - market_skill_id: api_versioning
+#   proposed_skills_yaml_id: api_versioning
+#   hypothesis_origin: MARKET_ONLY
+#   proposed_knowledge_status: UNKNOWN
+#   mirror_from_candidate: null
+#   experience_ids_to_probe: [company-x-backend-engineer]
+#   ask_angle:
+#     "Did you ever have to maintain or change APIs without breaking existing consumers?"
+#   priority: MEDIUM
+#   promoted_to_skills_yaml: false
+
+grilling_priorities: []
+# - market_skill_id: root_cause_analysis
+#   priority: HIGH
+#   reason: null
+
+counts:
+  postings_included: 0
+  market_skills: 0
+  hypotheses_open: 0
+  hypotheses_market_only: 0
+  hypotheses_with_candidate_signal: 0

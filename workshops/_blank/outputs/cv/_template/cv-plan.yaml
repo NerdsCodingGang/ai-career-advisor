@@ -1,0 +1,187 @@
+# outputs/cv/<target-slug>/cv-plan.yaml
+# FROZEN v0.4 — positioning schema for ONE concrete CV (no CV prose)
+#
+#   Career Database = truth
+#   cv-plan         = positioning
+#   cv.md           = rendering
+#
+# Plan never mutates candidate/*. Selection ≠ invention.
+# Example ids: fictional only (example-corp-…) — never real employer brands.
+#
+# =============================================================================
+# PRODUCT FIELDS (this file exists to answer exactly these)
+# =============================================================================
+#   1. target role          → header.target_role (+ target_slug)
+#   2. language             → cv_language: pl | en
+#   3. section order        → sections[] (array order = CV order)
+#   4. which skills         → skills[] + skill_groups[] (expose / group)
+#   5. which roles          → experiences[].detail: detailed | compact | omit
+#   6. which achievements   → achievements[]
+#   7. length budget        → max_pages: 4  (HARD CAP — renderer must respect)
+#
+# Supporting (not a second truth store): contact flags, about angle, education/
+# optional_other picks, de_emphasize, footer — still ids/flags only.
+#
+# ELIGIBILITY (hard):
+#   skills to expose:     skills.yaml id + knowledge_status ∈ {CONFIRMED, PARTIAL}
+#   achievements to use:  achievements.yaml id + confirmation ∈ {CONFIRMED, PARTIAL}
+#                         + forced == false + contribution_clear == true
+#   roles:                employment/index.yaml id (+ role file)
+#   No eligible id → do not invent for fit.
+#
+# READY when 1–7 are set coherently for the target.
+# =============================================================================
+
+schema_version: "0.4"
+
+status: DRAFT                     # DRAFT | READY | SUPERSEDED
+
+meta:
+  created_at: null
+  updated_at: null
+  based_on_profile_verified: false
+  profile_variant_id: null
+
+# --- 1–2. Target role + language ---
+target_slug: null                 # outputs/cv/<target-slug>/
+cv_language: null                 # pl | en
+
+# --- 7. Length budget (hard cap) ---
+max_pages: 4                      # MUST stay ≤ 4; prefer fitting in fewer when possible
+
+# =============================================================================
+# Header (person/contact from DB at render — plan stores target role + flags)
+# =============================================================================
+header:
+  person:
+    include: true
+    emphasis: primary
+
+  target_role: null               # e.g. "QA Analyst" | "C# Engineer" | "IT Support Specialist"
+  target_role_emphasis: primary
+
+  track_id: null
+  estimated_level_to_signal: null # JUNIOR|REGULAR|SENIOR|LEAD|STAFF|PRINCIPAL|UNKNOWN|null
+
+  contact_public_links:
+    include: true
+    emphasis: normal
+    include_location: true
+    include_remote_paren: true
+    include_phone: false
+    include_email: false
+    public_links:
+      linkedin: true
+      github: true
+      gitlab: false
+      portfolio: false
+      dribbble: false
+      behance: false
+      other_labels: []
+
+# =============================================================================
+# 3. Section order (array order = CV order; locked ids)
+# =============================================================================
+# person | target_role | contact_public_links | about_me | skills |
+# experience | education | languages | optional_other
+sections:
+  - id: person
+    include: true
+    emphasis: primary
+  - id: target_role
+    include: true
+    emphasis: primary
+  - id: contact_public_links
+    include: true
+    emphasis: normal
+  - id: about_me
+    include: true
+    emphasis: primary
+  - id: skills
+    include: true
+    emphasis: primary
+  - id: experience
+    include: true
+    emphasis: primary
+  - id: education
+    include: true
+    emphasis: normal
+  - id: languages
+    include: true
+    emphasis: normal
+  - id: optional_other
+    include: false
+    emphasis: minimal
+
+positioning_notes: null
+
+about_me:
+  angle: null                     # framing hint only; no CV sentences here
+
+# =============================================================================
+# 4. Which skills we expose  (skills.yaml → SKILLS table)
+# =============================================================================
+# skills[]      = what may appear + emphasis
+# skill_groups  = table layout (group label + ordered ids, comma-separated at render)
+# Invariant: skill_groups.*.skill_ids ⊆ skills[] with emphasis primary|secondary
+# Prefer 4–7 groups. Stay inside max_pages.
+
+skills: []
+# - id: test-case-design
+#   emphasis: primary             # primary | secondary | de_emphasize | omit
+
+skill_groups: []
+# - id: qa_methods
+#   label: null                   # e.g. "Manual Testing & QA" (cv_language)
+#   skill_ids: []
+
+# =============================================================================
+# 5. Which roles: detailed | compact | omit  (employment/* → EXPERIENCE)
+# =============================================================================
+# Array order = order on CV. Facts from role files — not invented here.
+
+experiences: []
+# - id: example-corp-qa
+#   detail: detailed              # detailed | compact | omit
+#   band: primary                 # primary | earlier
+#   angle: null                   # framing hint only
+#   project_highlight_ids: []     # optional; ⊂ role projects[] — keep few (max_pages)
+
+# =============================================================================
+# 6. Which achievements we use  (achievements.yaml → under roles)
+# =============================================================================
+achievements: []
+# - id: example-corp-regression-suite
+#   emphasis: primary             # primary | secondary | omit
+
+# =============================================================================
+# Tail (profile-extra) — still flags/ids only
+# =============================================================================
+education: []
+# - id: edu-1
+#   include: true
+
+languages:
+  include: true
+
+optional_other:
+  portfolio:
+    include: false
+  public_projects:
+    include: false
+  certifications:
+    include: false
+    ids: []
+  selected_courses:
+    include: false
+    ids: []
+  interests:
+    include: false
+
+footer:
+  rodo_clause: false
+
+de_emphasize: []
+# - "people management"
+# - skill:legacy-tool
+# - experience:example-corp-internship

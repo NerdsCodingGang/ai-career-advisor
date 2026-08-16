@@ -1,0 +1,85 @@
+# candidate/seniority.yaml
+# Phase 7b — FROZEN.
+# Evidence-based seniority by TRACK / target context.
+#
+# DECISIONS LOCKED:
+#   1. Seniority is PER TRACK — not one global level for the whole person.
+#   2. estimated_level is a SYSTEM HYPOTHESIS from evidence — NOT a replacement
+#      for official_title (title stays historical fact on employment/*).
+#   3. Never auto-promote; never write estimated_level into header.title.
+#   4. Canonical levels ONLY:
+#        JUNIOR | REGULAR | SENIOR | LEAD | STAFF | PRINCIPAL | UNKNOWN
+#      Market aliases (Mid, Mid-level, Regular, Intermediate, …) → map to REGULAR.
+#      Do not store MID as a separate estimated_level.
+#   5. No global_summary in v0.1 — source of truth: assessments[] only.
+#
+# =============================================================================
+# LOCKED CONTRACT
+# =============================================================================
+# Four layers (never collapse):
+#   official_title      → employment/*/header.title
+#   observed_scope      → employment/*/observed_scope
+#   estimated_seniority → THIS file (per track)
+#   target_positioning  → career-goal + cv-plan (NOT here)
+#
+# Rule:
+#   Seniority ← scope, autonomy, complexity, responsibility — NOT title alone.
+#
+# Tone:
+#   OK:  "For backend IC work your scope looks closer to Senior; for people
+#         management the evidence so far looks closer to Regular. Let's check
+#         both against the market."
+#   NOT: auto-promote, rewrite official_title, or "N years = Mid"
+#
+# observed_scope keys on each role (UNKNOWN|LOW|MEDIUM|HIGH):
+#   autonomy | ownership | complexity | responsibility
+#   | stakeholder_scope | decision_scope | mentoring
+# =============================================================================
+
+schema_version: "0.1"
+
+meta:
+  status: NOT_STARTED             # NOT_STARTED | IN_PROGRESS | COMPLETE | BLOCKED
+  updated_at: null
+  notes: null
+
+# --- One row per track / target context (SOURCE OF TRUTH) ---
+# No global blurb/level in v0.1.
+assessments: []
+# - track_id: backend_engineering   # stable slug
+#   track_label: Backend Engineering
+#   related_target_roles: []        # optional labels from career-goal / CV variants
+#   estimated_level: null
+#     # JUNIOR | REGULAR | SENIOR | LEAD | STAFF | PRINCIPAL | UNKNOWN
+#     # (Mid / Intermediate / … are aliases → REGULAR — do not store MID)
+#   confidence: UNKNOWN             # LOW | MEDIUM | HIGH | UNKNOWN
+#   rationale: null                 # cite scope + experiences — not title/years alone
+#   evidence_experience_ids: []
+#   scope_rollup:
+#     autonomy: UNKNOWN
+#     ownership: UNKNOWN
+#     complexity: UNKNOWN
+#     responsibility: UNKNOWN
+#     stakeholder_scope: UNKNOWN
+#     decision_scope: UNKNOWN
+#     mentoring: UNKNOWN
+#   title_mismatch:
+#     detected: false
+#     official_titles_seen: []
+#     note: null
+#   user_acknowledged: null         # true | false | null
+#   open_question_id: null
+#   market_level_check:
+#     status: NOT_STARTED           # NOT_STARTED | IN_PROGRESS | COMPLETE | SKIPPED
+#     compared_to_posting_levels: []  # canonical only, e.g. ["regular", "senior"]
+#     duty_overlap_notes: null
+#     posting_ids: []
+#     supports_estimated_level: null  # true | false | mixed | null
+#
+# - track_id: people_management
+#   track_label: People Management
+#   estimated_level: REGULAR
+#   confidence: MEDIUM
+#   rationale: "Mentoring and some ownership, but limited hiring/decision scope yet."
+#   evidence_experience_ids: [example-corp-backend]
+#   ...
