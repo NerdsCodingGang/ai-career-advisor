@@ -1,0 +1,15 @@
+---
+description: Never add Cursor/agent attribution to git commits or PRs
+alwaysApply: true
+---
+
+# No Cursor commit attribution
+
+Never add any of these to commit messages, PR bodies, or git trailers:
+
+- `Co-authored-by: Cursor <cursoragent@cursor.com>`
+- `Co-authored-by: Cursor Agent`
+- `Made-with: Cursor`
+- `--trailer` flags that attribute work to Cursor/agent
+
+When committing, use only the subject/body the user asked for. If the environment injects a Cursor trailer anyway, strip it before finishing (amend only when amend rules allow; otherwise a follow-up commit that only cleans history is wrong — prefer `commit-msg` hook / rewrite).

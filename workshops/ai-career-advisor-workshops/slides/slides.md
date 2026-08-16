@@ -15,6 +15,7 @@ fonts:
   mono: JetBrains Mono
   weights: '400,600,700,800'
 colorSchema: light
+favicon: /nerds-coding-gang.png
 ---
 
 <!--
@@ -36,7 +37,7 @@ Plan: blok warsztatu ≠ stage skilla; blok 6 = agent 10–15 ofert + dopytanie 
 </div>
 
 <p class="cover-foot">
-<span class="cover-ig" aria-hidden="true">📸</span>
+<img class="cover-avatar" src="/nerds-coding-gang.png" alt="NerdsCodingGang" width="28" height="28" />
 @flynerd.pl · NerdsCodingGang
 </p>
 

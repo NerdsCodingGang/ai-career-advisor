@@ -660,6 +660,15 @@ p.cover-sub strong {
   opacity: 1;
 }
 
+.cover-avatar {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px var(--aca-lilac);
+}
+
 .pill {
   display: inline-block;
   padding: 0.2rem 0.7rem;
