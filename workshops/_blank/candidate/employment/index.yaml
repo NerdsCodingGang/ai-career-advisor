@@ -1,41 +1,23 @@
-# candidate/employment/index.yaml
-# Lightweight TOC of employment experiences — NOT evidence detail.
-#
-# Three jobs only:
-#   1. list experiences (stable semantic ids)
-#   2. point to each experience file
-#   3. hold discovery + relevance status at index level
-#
-# Do NOT duplicate header/scope/competency_evidence from role files.
-# Detail lives only in candidate/employment/<semantic-id>.yaml
-# (copied from role-template.yaml).
-#
-# Id MUST be semantic and stable (filename stem), never role-01/role-02.
-# Example: example-corp-senior-sde → candidate/employment/example-corp-senior-sde.yaml
-# Docs/examples: fictional company slugs only — never real employer brands.
-#
-# profile.yaml → files.employment.index points here.
+# candidate/employment/index.yaml — TOC only; detail in employment/<id>.yaml
+# Semantic ids (never role-01). profile.yaml → files.employment.index
 
 schema_version: "0.1"
 
-# Order = preferred archaeology order (usually newest / most relevant first)
 experiences: []
 # - id: example-corp-senior-sde
 #   file: candidate/employment/example-corp-senior-sde.yaml
-#   company: Example Corp          # label only for TOC scanning
-#   title: Senior SDE              # label only
-#   period: "2021–present"         # label only — truth dates in role file
-#   is_current: true               # mirror/hint; confirm in role file
+#   one_liner: "Senior SDE, API ownership, 2021–present"   # scan without opening role file
+#   company: Example Corp          # label only
+#   title: Senior SDE
+#   period: "2021–present"
+#   is_current: true
 #   relevance: UNKNOWN             # UNKNOWN | HIGH | MEDIUM | LOW | SKIP
-#     # HIGH/MEDIUM → deepen in archaeology (~top experiences)
-#     # LOW → light pass; SKIP → listed but not excavated unless needed
 #   discovery:
 #     archaeology: NOT_STARTED     # NOT_STARTED | IN_PROGRESS | COMPLETE | BLOCKED
 #     grilling: NOT_STARTED
 #   updated_at: null
 
-# Index-level helpers for the agent (optional aggregates — recompute from list)
 meta:
   count: 0
-  current_experience_id: null     # id where is_current is true, if any
-  archaeology_focus_ids: []       # ids with relevance HIGH/MEDIUM selected for Pass 1
+  current_experience_id: null
+  archaeology_focus_ids: []

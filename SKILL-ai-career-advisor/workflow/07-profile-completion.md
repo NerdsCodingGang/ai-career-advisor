@@ -1,6 +1,8 @@
 # 07 — Profile completion
 
 > **Interaction:** This file defines *what evidence to seek*, not a batch job. Obey `SKILL.md` PRIMARY INTERACTION CONTRACT — end discovery turns with ONE question, then STOP.
+>
+> **SHORT mode:** competency-profile + minimal seniority per track; defer deep seniority debate — `references/workshop-short-mode.md`.
 
 Close the **Verified Career Profile** (database ready for CV planning) — still **not** the final CV.
 
@@ -88,8 +90,11 @@ Load `workflow/08-cv-generation.md`.
 
 ## Read / Write
 
-**Read:** `profile.yaml`, `profile-extra`, `seniority`, employment scope, skills summary, achievements, career-goal, open-questions.  
-**Write:** `profile-extra.yaml`, `seniority.yaml`, `outputs/competency-profile.md`, session flags, `profile.yaml` progress.
+> **Token budget:** Obey `SKILL.md` → Token-efficient reads & Write budget. Below is stage-specific minimum.
+
+**Read:** `profile.yaml`, `profile-extra.yaml`, `seniority.yaml`, `career-goal.yaml`, `outputs/competency-profile.md` template, `employment/index.yaml` (focus ids + `one_liner`), **focus role files only** (not entire employment folder), `skills.yaml` summary / CONFIRMED+PARTIAL slice, `achievements.yaml` CONFIRMED slice, HIGH `open-questions` only.
+
+**Write:** `profile-extra.yaml`, `seniority.yaml`, `outputs/competency-profile.md`, session flags, `profile.yaml` on stage exit. Batch profile writes — not after every micro-question.
 
 ---
 

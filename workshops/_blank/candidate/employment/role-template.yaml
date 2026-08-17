@@ -1,70 +1,16 @@
 # candidate/employment/role-template.yaml
-# FROZEN phase-2 template — pair with employment/index.yaml (semantic ids only).
-# TEMPLATE ONLY — copy to a semantic filename, never keep as role-01/role-02.
-#
-# Real files:
-#   candidate/employment/<semantic-id>.yaml
-# Examples (fictional company slugs only — never real employer brands):
-#   candidate/employment/example-corp-engineering-manager.yaml
-#   candidate/employment/example-corp-senior-sde.yaml
-#
-# Semantic ids stay stable for evidence references. Numeric role-01 breaks when
-# the employment list is re-ordered. Register each file in employment/index.yaml.
-# In schema comments use example-corp / northwind / … — not real companies.
-#
-# =============================================================================
-# THREE LAYERS (do not collapse)
-# =============================================================================
-#   FACT FROM DOCUMENT        ≠  FACT CONFIRMED BY USER  ≠  SKILL INFERRED FROM FACT
-#
-# Example: CV lists "AWS, Terraform, Kubernetes"
-#   → may seed competency_evidence with fact_status DOCUMENT_EVIDENCE
-#   → agency/capability stay unknown until conversation
-#   → does NOT mean skills.yaml CONFIRMED or capability practical/deep
-#
-# competency_evidence: one model for ALL occupations (dev, QA, PM, analyst, …)
-#   kind: TECHNOLOGY | TOOL | PRACTICE | PROCESS | DOMAIN | RESPONSIBILITY | CAPABILITY
-#   Two independent axes (NEVER derive one from the other):
-#     agency (this job) × capability (what they can do)
-#   Valid e.g. owned + practical (owned a small Redis, not a Redis expert)
-#           or used + deep (deep from earlier career; only used here)
-#
-# CV / LinkedIn PDF:
-#   - Offered in 00-onboarding (optional). Never required.
-#   - In Career Archaeology: helper only — do not re-ask "did you use X?"
-#     Ask what they built / owned with X; challenge stale or conflicting lines.
-#   - Conversation may correct the document (see conflicts[]).
-#
-# Dimensions (production, security, architecture, quality, …):
-#   - Do NOT require a fixed checklist per role (that becomes a form).
-#   - First set relevance; only then explore RELEVANT dimensions.
-#   - QA ≠ Backend ≠ Recruiter — different relevant sets.
-# =============================================================================
-# Confirmed skills → candidate/skills.yaml (link by id).
-# Achievements → candidate/achievements.yaml (link by id).
-# Open threads → candidate/open-questions.yaml (link by id).
-# CV positioning → outputs/cv/<target>/cv-plan.yaml (do not reframe here).
-# Seniority aggregate → candidate/seniority.yaml (never from title alone).
-#
-# TITLE ≠ SCOPE ≠ SENIORITY ≠ POSITIONING (hard rule):
-#   official_title (header.title)  ≠  observed_scope  ≠  estimated_seniority  ≠  target_positioning
-# Seniority is inferred from scope, autonomy, complexity, responsibility — NOT job title alone.
-# Companies often keep junior titles to suppress pay; agent may surface a higher
-# market-level hypothesis with evidence — NEVER auto-promote the user.
-# =============================================================================
+# Copy → employment/<semantic-id>.yaml (never role-01). Register in index.yaml.
+# Epistemology & agency×capability rules → references/skill-evidence-rules.md
+# Field semantics → references/contracts-full.md
 
 schema_version: "0.1"
 
 id: null
-# Must match filename stem, e.g. example-corp-engineering-manager
-# Pattern suggestion: <company-slug>-<title-slug>  (fictional slugs in docs only)
 
-# --- Provenance ---
 provenance:
   seeded_from_documents: false
-  source_refs: []                 # ids from candidate/sources/index.yaml
+  source_refs: []
 
-# --- Optional SEED from documents (FACT FROM DOCUMENT — never authoritative) ---
 seed:
   present: false
   as_stated:
@@ -73,41 +19,25 @@ seed:
     start_date: null
     end_date: null
     summary_or_bullets: []
-    tools_or_skills_listed: []    # raw names as on CV/LI — seed only; map into competency_evidence later
+    tools_or_skills_listed: []
   document_date_or_approx: null
-  suspected_issues: []            # stale | missing_promotion | title_mismatch | inflated | …
+  suspected_issues: []
 
-# --- Document vs user conflicts ---
-# When document and user disagree → USER WINS for working truth.
-# Always RECORD the conflict. keep_document only if user explicitly confirms doc.
 conflicts: []
-# - field: title
-#   document_said: "..."
-#   user_said: "..."
-#   source_ref: null
-#   resolution: keep_user        # keep_user | keep_document | needs_followup
-#   open_question_id: null       # when needs_followup
-#   recorded_at: null
 
-# --- Header: FACT CONFIRMED BY USER (or best-known after confirmation) ---
 header:
-  company: null                   # employer / client; for career_break may be null or a label
-  title: null                     # OFFICIAL title only (employer label). Not seniority.
-  titles_over_time: []            # official title changes — still labels, not level proof
+  company: null
+  title: null
+  titles_over_time: []
   engagement_kind: employment
-    # employment | contract | freelance | internship | career_break | other
-    # career_break → CV gets one honest paragraph, not fake job bullets
-  employment_type: null           # full_time | part_time | contract | freelance | internship | other
+  employment_type: null
   location: null
-  remote: null                    # onsite | hybrid | remote | unknown
+  remote: null
   start_date: null
-  end_date: null                  # YYYY-MM | YYYY | present
-  is_current: null                # true | false | unknown
+  end_date: null
+  is_current: null
   confirmed_with_user: false
-  post_document_updates: null     # material changes after document date
-
-# --- Pass 1 evidence (conversation-first; seed only as prompts) ---
-# One question per turn by default. Empty seed is fine.
+  post_document_updates: null
 
 context:
   product_or_project: null
@@ -121,127 +51,47 @@ scope:
   ownership: null
   responsibility_changes: null
 
-# Observed scope signals (THIS role) — structured evidence for seniority.yaml
-# Do NOT set from official_title. Levels: UNKNOWN | LOW | MEDIUM | HIGH
-# Aggregate across roles in seniority.yaml — never replace with prose-only notes.
 observed_scope:
-  autonomy: UNKNOWN               # works without constant guidance
-  ownership: UNKNOWN              # accountable / end-to-end slice
-  complexity: UNKNOWN             # ambiguity, judgment, cross-cutting difficulty
-  responsibility: UNKNOWN         # breadth/weight of what they were trusted with
-  stakeholder_scope: UNKNOWN      # clients, other teams, leadership — not only tickets
-  decision_scope: UNKNOWN         # decisions they could make without escalating
-  mentoring: UNKNOWN              # onboarding, helping others, go-to person
-  notes: null                     # optional color only — signals above are canonical
-
-challenges:
-  harder_problems: []             # [{summary, approach, outcome}] — no invented metrics
+  autonomy: UNKNOWN
+  ownership: UNKNOWN
+  complexity: UNKNOWN
+  responsibility: UNKNOWN
+  stakeholder_scope: UNKNOWN
+  decision_scope: UNKNOWN
+  mentoring: UNKNOWN
   notes: null
 
-# --- Projects under this role (for “Selected Project Highlights” on CV) ---
-# Discover in archaeology; do not invent domains/products. CV plan selects which ids to show.
-projects: []
-# - id: example-corp-mobile-banking
-#   name: Mobile banking product
-#   domain: FinTech                # optional label
-#   summary: null                 # what the product was
-#   personal_contribution: null   # what THEY did (testing scope, ownership, …)
-#   confirmed_with_user: false
-#   skill_ids: []
-#   achievement_ids: []
-#   source_refs: []
+challenges:
+  harder_problems: []
+  notes: null
 
-# --- Competency evidence (per this experience) ---
-# Universal evidence bag — not "tools only". Same shape for Redis, Jira, Figma,
-# SQL, incident response, test design, stakeholder communication, Excel, SAP…
-#
-# Pipeline later:
-#   employment/*.yaml (competency_evidence)
-#        → aggregate → skills.yaml
-#        → target weighting → cv-plan.yaml → CV
-#
-# Axes are INDEPENDENT — do not infer capability from agency or vice versa.
-#   owned  + practical = OK (responsible for small Redis, not Redis expert)
-#   used   + deep      = OK (deep from prior roles; only used it here)
-#   ambient + practical = usually wrong — challenge in conversation
-#
-# Never raise capability above awareness from a document alone.
-# Disambiguate "używałam": used vs owned vs deepened (agency), separately from capability.
+projects: []
+
 competency_evidence:
   items: []
-  # - id: redis
-  #   name: Redis
-  #   kind: TECHNOLOGY
-  #     # TECHNOLOGY | TOOL | PRACTICE | PROCESS | DOMAIN | RESPONSIBILITY | CAPABILITY
-  #   how_used: null
-  #   heard_from: document        # document | conversation | both
-  #   fact_status: DOCUMENT_EVIDENCE
-  #     # DOCUMENT_EVIDENCE | USER_CONFIRMED | DISPUTED | UNKNOWN
-  #
-  #   agency: unknown             # THIS job only
-  #     # unknown | ambient | assisted | used | owned | deepened
-  #   capability: unknown         # personal ability — independent of agency
-  #     # unknown | none | awareness | basic | practical | deep
-  #
-  #   skill_id: null              # → skills.yaml aggregate
 
-# --- Dimensions: relevance first, explore only if RELEVANT ---
-# Do NOT invent per-role checklists like production_checked / security_checked.
-# Agent discovers which dimensions matter for THIS experience, then deepens those.
-# (Orthogonal to competency_evidence: dimensions = exploration themes;
-#  competency_evidence = concrete observed competencies.)
 dimensions:
-  # key = dimension id (extensible). Start UNKNOWN; set after early archaeology.
-  # relevance: UNKNOWN | RELEVANT | NOT_RELEVANT
-  # exploration: NOT_STARTED | IN_PROGRESS | COMPLETE | SKIPPED
   items: []
-  # Examples (illustrative — not a mandatory set):
-  # - id: quality
-  #   relevance: UNKNOWN
-  #   exploration: NOT_STARTED
-  #   notes: null
-  # - id: production
-  #   relevance: UNKNOWN
-  #   exploration: NOT_STARTED
-  #   notes: null
-  # - id: architecture
-  #   relevance: UNKNOWN
-  #   exploration: NOT_STARTED
-  #   notes: null
-  # - id: security
-  #   relevance: UNKNOWN
-  #   exploration: NOT_STARTED
-  #   notes: null
-  # - id: leadership
-  #   relevance: UNKNOWN
-  #   exploration: NOT_STARTED
-  #   notes: null
-  # - id: stakeholder_management
-  #   relevance: UNKNOWN
-  #   exploration: NOT_STARTED
-  #   notes: null
 
-# --- Discovery status ---
 passes:
   archaeology:
-    status: NOT_STARTED           # NOT_STARTED | IN_PROGRESS | COMPLETE | BLOCKED
+    status: NOT_STARTED
     updated_at: null
     coverage:
       context: false
       scope: false
       ownership: false
       challenges: false
-      competency_evidence: false  # at least key items have agency+capability set or explicitly unknown
+      competency_evidence: false
       freshness: false
       conflicts_resolved: false
-      # dimensions: only RELEVANT ones need exploration COMPLETE before archaeology COMPLETE
       relevant_dimensions_explored: false
   grilling:
     status: NOT_STARTED
     updated_at: null
 
 links:
-  skill_ids: []                   # SKILL INFERRED/CONFIRMED lives in skills.yaml
+  skill_ids: []
   achievement_ids: []
   open_question_ids: []
 

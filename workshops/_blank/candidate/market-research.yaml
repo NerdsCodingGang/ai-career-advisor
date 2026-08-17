@@ -58,7 +58,7 @@ sources:
   #   company_or_board: null
   #   url_or_ref: null
   #   captured_at: null
-  #   notes: null
+  #   notes: null                 # max ONE line — never full JD body
   other_refs: []
 
 sample_quality:

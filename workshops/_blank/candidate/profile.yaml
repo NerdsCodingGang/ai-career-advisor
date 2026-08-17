@@ -1,42 +1,21 @@
-# candidate/profile.yaml
-# Table of contents + session controller — NOT a career profile.
-#
-# Four jobs only:
-#   1. current pipeline stage
-#   2. where PRIVATE / GENERATED data lives
-#   3. per-stage progress
-#   4. global session settings + safety flags
-#
-# Do NOT store: skills, employment history, achievements, roles, education, CV prose.
-# Source-validation detail lives in candidate/sources/index.yaml — not here.
-#
-# Write rule: when changing stage, update session.current_stage AND progress
-# in the same turn (no drift).
+# candidate/profile.yaml — session controller (stage, progress, pointers, gates)
+# NOT career content. Flag semantics → references/contracts-full.md (lazy-load).
 
-# FROZEN v0.1 — session index schema.
-# Phase 2 employment: index.yaml + role-template.yaml (this file stays session-only).
 schema_version: "0.1"
 
 candidate:
-  id: null                    # slug or uuid — never the magic string "current"
+  id: null
   language: "pl"
 
 session:
-  # Whole workshop session (not a single stage)
-  status: ACTIVE              # ACTIVE | PAUSED | COMPLETE
-  updated_at: null            # ISO-8601
+  status: ACTIVE
+  updated_at: null
   last_session_at: null
-  # Stage id MUST match workflow filename stem (stable; do not use bare integers)
   current_stage:
     id: "00-onboarding"
     name: onboarding
-  # Workshop pacing — deferred; null until defined in workflow/SKILL
-  # When set, expected values: SHORT | FULL (semantics TBD in phase 8+)
-  mode: null
+  mode: SHORT                   # SHORT (~3 h workshop) | FULL | null → FULL
 
-# Status enum: NOT_STARTED | IN_PROGRESS | COMPLETE | BLOCKED
-# BLOCKED = waiting on a dependency (e.g. market research needs target role)
-# Initial state: ACTIVE session + current_stage onboarding ⇒ that stage is IN_PROGRESS
 progress:
   "00-onboarding": IN_PROGRESS
   "01-career-goal": NOT_STARTED
@@ -48,7 +27,6 @@ progress:
   "07-profile-completion": NOT_STARTED
   "08-cv-generation": NOT_STARTED
 
-# Pointers only — paths for the rest of the workspace
 files:
   career_goal: "candidate/career-goal.yaml"
   sources:
@@ -60,45 +38,17 @@ files:
   seniority: "candidate/seniority.yaml"
   market_research: "candidate/market-research.yaml"
   open_questions: "candidate/open-questions.yaml"
-  profile_extra: "candidate/profile-extra.yaml"   # identity, education, languages, AI, links
+  profile_extra: "candidate/profile-extra.yaml"
 
 outputs:
   competency_profile: "outputs/competency-profile.md"
   cv_directory: "outputs/cv/"
-  cv_variants: []             # [{id, target_role, plan: path, cv: path}]
+  cv_variants: []
 
-# Safety flags — must not contradict progress (see rules below)
 session_flags:
-  # Source intake (onboarding). Validation detail → sources/index.yaml
-  starting_documents_received: false   # user actually provided at least one source
-  starting_documents_skipped: false    # user explicitly has no CV / sources
-  source_intake_resolved: false        # received OR skipped — onboarding may proceed
-
-  # Discovery → profile → CV gates
-  core_discovery_complete: false       # stages 01–06 all COMPLETE
-  career_profile_complete: false       # stage 07 COMPLETE
-  cv_generation_allowed: false         # both of the above true
-
-# Flag rules (agent must obey; later: automated validation):
-#
-#   starting_documents_received  → at least one source file registered
-#   starting_documents_skipped   → user explicitly declined / has no documents
-#   source_intake_resolved       → skipped OR (received AND freshness validation done
-#                                  in sources/index.yaml — or explicitly deferred).
-#                                  received alone is NOT enough when documents exist.
-#                                  Do NOT treat "no CV" as received.
-#
-# Mutual exclusivity (hard invariant — also enforce later in sources/index.yaml
-# and workspace validation):
-#   received=false, skipped=false  → unresolved
-#   received=true,  skipped=false  → documents provided
-#   received=false, skipped=true   → user explicitly skipped
-#   received=true,  skipped=true   → INVALID (must never occur)
-#
-#   core_discovery_complete      → progress 01–06 all COMPLETE
-#   career_profile_complete      → progress 07-profile-completion is COMPLETE
-#   cv_generation_allowed        → core_discovery_complete AND career_profile_complete
-#                                  Required before stage 08 may run.
-#
-# Default: cv_generation_allowed is false. Never generate a final CV because
-# the user said "ok" mid-conversation.
+  starting_documents_received: false
+  starting_documents_skipped: false
+  source_intake_resolved: false
+  core_discovery_complete: false
+  career_profile_complete: false
+  cv_generation_allowed: false

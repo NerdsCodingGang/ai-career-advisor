@@ -1,8 +1,10 @@
 # 02 — Career archaeology (Pass 1)
 
 > **Interaction:** This file defines *what evidence to seek*, not a batch job. Obey `SKILL.md` PRIMARY INTERACTION CONTRACT — end discovery turns with ONE question, then STOP.
+>
+> **SHORT mode** (`session.mode: SHORT`): load `references/workshop-short-mode.md` — focus **3–4** roles (not ~5); light pass on LOW/SKIP.
 
-**Evidence collection** for ~5 most important / recent experiences — not skill confirmation, not achievements questionnaire, not CV writing.
+**Evidence collection** for ~5 most important / recent experiences (SHORT: **3–4**) — not skill confirmation, not achievements questionnaire, not CV writing.
 
 Obey `SKILL.md` Conversation mode.  
 Schemas: `candidate/employment/index.yaml`, `candidate/employment/role-template.yaml` → `<semantic-id>.yaml`.
@@ -27,8 +29,9 @@ stories + optional document seeds  →  employment evidence (agency/capability o
    Docs/examples: fictional slugs only; real user employers use their real names in **data**, not in skill docs.
 3. Copy `role-template.yaml` → `employment/<id>.yaml` per experience.
 4. Set `relevance` vs career goal: HIGH / MEDIUM / LOW / SKIP.
-5. Pick **focus** (~5): newest + HIGH/MEDIUM → `meta.archaeology_focus_ids`.
-6. Career breaks / gaps → own row with `header.engagement_kind: career_break` when relevant.
+5. Set `one_liner` per experience (≤1 line for index scanning without opening role file).
+6. Pick **focus** (~5; SHORT: **3–4**): newest + HIGH/MEDIUM → `meta.archaeology_focus_ids`.
+7. Career breaks / gaps → own row with `header.engagement_kind: career_break` when relevant.
 
 Companion: one experience at a time, start with most current.
 
@@ -84,14 +87,25 @@ Load `workflow/03-achievement-mining.md`.
 
 ## Read / Write
 
-**Read:** `profile.yaml`, `career-goal.yaml`, employment index + **one** active role file, optional sources.  
-**Write:** index, role files, light skills seeds, open-questions for deferred threads, `profile.yaml` progress.
+> **Token budget:** Obey `SKILL.md` → Token-efficient reads & Write budget. Below is stage-specific minimum.
+
+**Read:** `profile.yaml`, `career-goal.yaml`, `employment/index.yaml` + **one** active role file. Sources only when freshness thread active.
+
+**Write (active loop — per turn):**
+
+| Primary | `employment/<active-id>.yaml` — evidence from this answer |
+| Secondary | Index: `one_liner` + `discovery.archaeology` on active id only |
+| Defer | `skills.yaml` until role archaeology COMPLETE or stage 02 exit |
+| Defer | `profile.yaml` until stage transition |
+| Optional | `open-questions.yaml` only when spawning a formed deferred thread |
+
+**Write (stage exit):** light `skills.yaml` seeds from completed roles; `profile.yaml` progress + `current_stage`.
 
 ---
 
 ## Exit checklist
 
-- [ ] Semantic ids; focus ~5 excavated or consciously light-passed  
+- [ ] Semantic ids; focus ~5 (SHORT: 3–4) excavated or consciously light-passed  
 - [ ] Projects / career breaks captured when real  
 - [ ] No skill CONFIRMED from documents alone  
 - [ ] `02` COMPLETE → `03` IN_PROGRESS  

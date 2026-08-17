@@ -17,6 +17,20 @@ experience + postings → compare → hypotheses → “did you also…?” → 
 - Current role market, target role market, related roles (**with reasons**).
 - ~10–15 **included** postings; record exclusions in `sample_quality`.
 
+## Batch first, then conversation
+
+```text
+Phase A (batch): sample postings → aggregate market_skill_base → write market-research.yaml once
+Phase B (chat):  one hypothesis / formed ask per turn → grilling (05)
+```
+
+Do **not** store full job descriptions. Posting metadata only:
+
+- `title_as_posted`, `company_or_board`, `url_or_ref`, `role_bucket`
+- `notes`: **max one line** (e.g. “Senior QA, fintech, remote PL”) — never paste JD body
+
+Aggregated skills use `occurrence` (e.g. 8/12), `requirement_shape`, `typical_signals` — not 12 copied descriptions.
+
 ## Hypotheses
 
 | Origin | proposed_knowledge_status | mirror_from_candidate |

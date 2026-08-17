@@ -129,6 +129,16 @@ If tempted to add something for ATS/fit → **refuse**, explain, offer to update
 
 ---
 
+## Read / Write
+
+> **Token budget:** Obey `SKILL.md` → Token-efficient reads & Write budget. Below is stage-specific minimum.
+
+**Read:** `profile.yaml`, `cv-plan.yaml` for target slug, **only ids listed in plan** from `skills.yaml` / employment / achievements / profile-extra — not full Career Database dump.
+
+**Write:** `outputs/cv/<target-slug>/cv.md`, `profile.yaml` → `outputs.cv_variants[]`. Load `references/cv-writing-rules.md` only during render.
+
+---
+
 ## Checklist (done)
 
 - [ ] Gate `cv_generation_allowed` was true  

@@ -59,13 +59,13 @@ When unsure → **EXISTING** (ask continue vs CV — safer than wiping).
 
 ### Ambiguous intent → one choice, then wait
 
+Scripts below are **tone samples** — paraphrase, do not recite. One question, then wait.
+
 **PL:**  
-> Widzę, że masz już rozpoczęty profil zawodowy.  
-> Chcesz **kontynuować od miejsca, w którym skończyłyśmy**, czy raczej **zrobić nowe CV / nowy wariant** na bazie tego, co już jest?
+> Widzę, że już tu coś było. Wracamy do rozmowy, czy robimy nowe CV na bazie tego, co jest?
 
 **EN:**  
-> You already have a career profile in progress.  
-> Do you want to **continue where we left off**, or **create a new CV / variant** from what’s already there?
+> Looks like we already started. Pick up where we left off, or make a new CV from what’s here?
 
 (Do **not** offer “wipe everything / new profile from scratch” in the default menu — that destroys truth. If they insist on a full reset, confirm explicitly twice and only then clear `candidate/` fills; prefer a new repo/copy for workshops.)
 
@@ -94,21 +94,18 @@ When unsure → **EXISTING** (ask continue vs CV — safer than wiping).
 
 ### Opening beat (after activation)
 
+Scripts below are **tone samples** — paraphrase, do not recite. One question, then wait.  
+Do **not** explain epistemology (“punkt wyjścia, nie prawda”) before they have a document.
+
 **PL:**  
-> Cześć! Zbudujemy Twój profil zawodowy krok po kroku.  
-> Najpierw możemy wykorzystać to, co już masz — to tylko punkt wyjścia, nie ostateczna prawda.  
->  
-> Masz pod ręką **aktualne albo starsze CV** albo **PDF z LinkedIna**?  
-> Możesz wrzucić plik albo napisać, że wolisz zacząć bez dokumentów.
+> Cześć. Zanim wejdziemy w historię — masz CV albo eksport z LinkedIna?  
+> Jak nie, to po prostu zaczynamy rozmową.
 
 **EN:**  
-> Hi! We’ll build your career profile step by step.  
-> We can start from what you already have — it’s a starting hint, not the final truth.  
->  
-> Do you have a **current or older CV** or a **LinkedIn PDF** handy?  
-> You can upload a file or say you’d rather start without documents.
+> Hi. Before we go into your history — do you have a CV or a LinkedIn export?  
+> If not, we’ll just talk.
 
-Then **wait**. (Emoji optional — match user tone; default can omit.)
+Then **wait**. (Emoji optional — match user tone; default omit.)
 
 Set under the hood:
 - `session.status: ACTIVE`
@@ -127,7 +124,7 @@ Under the hood (mutual exclusivity):
 - `source_intake_resolved: true`
 
 Companion reply (example PL):  
-> Spoko — pójdziemy rozmową. Za chwilę ustalimy, gdzie jesteś zawodowo i dokąd zmierzasz.
+> Spoko — idziemy rozmową. Czym się teraz zajmujesz?
 
 Then → **Exit to 01**.
 
@@ -140,19 +137,19 @@ Under the hood:
 - `source_intake_resolved: false` until freshness is done
 
 Companion: acknowledge without file-system chatter  
-> Dzięki — potraktuję to jako punkt wyjścia i zaraz sprawdzę, czy coś mogło się zdezaktualizować.
+> Dzięki. Zanim wejdziemy w szczegóły — to CV jest jeszcze aktualne, czy coś się od tamtej pory zmieniło?
 
 #### Freshness check (required when received)
 
-Ask **one** focused freshness question (or two tightly linked clarifiers), e.g.:
+Ask **one** focused freshness question, e.g.:
 
 **PL:**  
-> Czy najnowsza rola z dokumentu nadal jest aktualna?  
-> Czy od przygotowania CV / eksportu LinkedIn doszło coś ważnego — nowa praca, awans, duży projekt?
+> Najnowsza rola z dokumentu nadal jest aktualna?
 
 **EN:**  
-> Is the latest role in the document still current?  
-> Since that CV / LinkedIn export, has anything material happened — new job, promotion, major project?
+> Is the latest role in the document still current?
+
+If they say yes / no / “something changed” → one follow-up on what changed (new job, promotion, project) — still one question per turn.
 
 Record outcomes in sources notes / employment seeds as **document facts**, not confirmed truth. Seed experiences only as `seed` / `DOCUMENT_EVIDENCE` — never mark skills `CONFIRMED` from the file alone.
 
@@ -168,17 +165,13 @@ Never set `received: true` and `skipped: true` together.
 
 ---
 
-## Read (this stage)
+## Read / Write
 
-- `candidate/profile.yaml` (always)
-- `candidate/sources/index.yaml` if present
-- Any uploaded files the user pointed to
+> **Token budget:** Obey `SKILL.md` → Token-efficient reads & Write budget. Below is stage-specific minimum.
 
-## Write (this stage)
+**Read:** `profile.yaml`, `career-goal.yaml`; `sources/index.yaml` only if intake active; pointed source files only once at intake.
 
-- `candidate/profile.yaml` — session, progress `00`, source intake flags
-- `candidate/sources/*` — registry + freshness notes when files exist
-- Optional light seeds into employment **only** as unverified document seed (see role-template epistemology)
+**Write:** `profile.yaml` (session, flags, progress), `sources/*` when files exist. Optional unverified employment seeds at intake only. No multi-file fan-out per turn.
 
 ## Exit when (Path 1 / intake complete)
 

@@ -102,6 +102,15 @@ Telefon / email: dopiero przy eksporcie CV (nie muszą być w bazie).
 
 ---
 
+### 10. Oszczędzaj tokeny (ważne na warsztacie)
+
+- **Nie wklejaj całego CV w czat** — wrzuć PDF do `candidate/sources/` i powiedz agentowi, że jest w folderze.
+- **Nowy chat przed blokiem CV** (`08`) — świeży kontekst = mniej halucynacji i niższy koszt.
+- Odpowiadaj **krótko i konkretnie** — agent i tak doprecyzuje jednym pytaniem.
+- Jeśli coś poszło nie tak: „kontynuuj od stage X” zamiast tłumaczyć całą historię od zera.
+
+---
+
 ## Mini checklist przed „gotowe”
 
 - [ ] Mam jasny target role  

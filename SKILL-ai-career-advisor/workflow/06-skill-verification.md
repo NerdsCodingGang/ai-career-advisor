@@ -66,8 +66,11 @@ Load `workflow/07-profile-completion.md`.
 
 ## Read / Write
 
-**Read:** `skills.yaml`, `career-goal.yaml`, `market-research.yaml` (critical set), `open-questions.yaml`.  
-**Write:** `skills.yaml` statuses/capability/evidence; open-question outcomes if spawned; `profile.yaml` progress + `core_discovery_complete` when earned.
+> **Token budget:** Obey `SKILL.md` → Token-efficient reads & Write budget. Below is stage-specific minimum.
+
+**Read:** `profile.yaml`, `career-goal.yaml`, `skills.yaml` rows for **current group only** (not entire file), `market-research.yaml` critical-id list only, active `open-questions` if any.
+
+**Write (per turn):** PRIMARY `skills.yaml` — **only rows touched by current group**. Optional one `open-questions` outcome. Defer `profile.yaml` until stage exit or setting `core_discovery_complete`.
 
 ---
 

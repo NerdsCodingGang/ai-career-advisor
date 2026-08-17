@@ -1,53 +1,5 @@
-# candidate/skills.yaml
-# Central competency map — aggregate across experiences.
-# FROZEN phase 3.
-#
-# Pipeline:
-#   employment/*/competency_evidence  →  skills.yaml  →  (later) cv-plan  →  CV
-# Next phase: market-research.yaml (hypotheses from outside user-provided data).
-#
-# =============================================================================
-# LOCKED DECISIONS
-# =============================================================================
-# - knowledge_status = how sure we are that this skill belongs on the profile
-# - capability       = depth of competence (independent; not derived from status)
-# - agency           = ONLY on evidence[] rows (per job), never global on the skill
-# - one skill → many evidence rows from different experiences
-# - no full project stories here
-# - DOCUMENT_EVIDENCE alone MUST NOT set capability above awareness
-# - REJECTED is kept so the agent does not re-ask
-# - UNKNOWN = we do not know yet (≠ "does not have it")
-# - NOT_RELEVANT = may exist; stop exploring for current profile/target
-# - PARTIAL ≠ uncertainty: real contact/experience, but limited or incomplete depth
-#   → agent must NOT restart from zero on a PARTIAL skill
-# - no market relevance, CV positioning, recency, or achievements in this file yet
-#
-# capability: unknown | none | awareness | basic | practical | deep
-# =============================================================================
-# knowledge_status (frozen set)
-# =============================================================================
-# UNKNOWN            — nothing useful known yet (≠ absent)
-# DOCUMENT_EVIDENCE  — appears in a provided source; not yet verified with user
-# INFERRED           — follows from experience description; not yet sufficiently confirmed
-# PARTIAL            — we know the user really had contact/experience; scope or depth
-#                      limited or incomplete (NOT a "we don't know" state)
-# CONFIRMED          — enough evidence
-# REJECTED           — user clearly does not have it / did not do it
-# NOT_RELEVANT       — may exist; no point exploring further in this process
-# DISPUTED           — sources or statements conflict; must resolve
-#
-# Typical path:
-#   DOCUMENT_EVIDENCE | INFERRED  →  (conversation)  →  PARTIAL  →  (deeper)  →  CONFIRMED
-#
-# Shortcuts (strong, unambiguous user evidence in one go):
-#   DOCUMENT_EVIDENCE → CONFIRMED
-#   INFERRED          → CONFIRMED
-#   UNKNOWN           → CONFIRMED
-#
-# Also valid:
-#   DOCUMENT_EVIDENCE → REJECTED | DISPUTED
-#   INFERRED          → REJECTED
-# =============================================================================
+# candidate/skills.yaml — competency map (aggregate from employment evidence)
+# Semantics: references/skill-evidence-rules.md (lazy-load). FROZEN v0.1.
 
 schema_version: "0.1"
 
@@ -55,23 +7,9 @@ skills: []
 # - id: redis
 #   name: Redis
 #   kind: TECHNOLOGY
-#     # TECHNOLOGY | TOOL | PRACTICE | PROCESS | DOMAIN | RESPONSIBILITY | CAPABILITY
-#
-#   knowledge_status: UNKNOWN
-#     # UNKNOWN | DOCUMENT_EVIDENCE | INFERRED | PARTIAL | CONFIRMED
-#     # REJECTED | NOT_RELEVANT | DISPUTED
-#
-#   capability: unknown
-#     # unknown | none | awareness | basic | practical | deep
-#
-#   evidence: []                    # agency ONLY here (per experience)
-#     # - experience_id: example-corp-senior-sde
-#     #   file: candidate/employment/example-corp-senior-sde.yaml
-#     #   agency: used
-#     #   capability: practical
-#     #   fact_status: USER_CONFIRMED
-#     #   note: null
-#
+#   knowledge_status: UNKNOWN    # UNKNOWN | DOCUMENT_EVIDENCE | INFERRED | PARTIAL | CONFIRMED | REJECTED | NOT_RELEVANT | DISPUTED
+#   capability: unknown        # unknown | none | awareness | basic | practical | deep
+#   evidence: []                 # agency ONLY per evidence row
 #   notes: null
 
 meta:

@@ -1,6 +1,8 @@
 # 03 — Achievement mining
 
 > **Interaction:** This file defines *what evidence to seek*, not a batch job. Obey `SKILL.md` PRIMARY INTERACTION CONTRACT — end discovery turns with ONE question, then STOP.
+>
+> **SHORT mode:** light pass only — clear wins from focus roles; skip forced mining per `references/workshop-short-mode.md`.
 
 Mine **impact / delivery / growth** from stories already told — never lead with “What are your achievements?”
 
@@ -63,8 +65,11 @@ Load `workflow/04-market-research.md`.
 
 ## Read / Write
 
-**Read:** `profile.yaml`, focus employment + index, `achievements.yaml`, light `career-goal.yaml`.  
-**Write:** `achievements.yaml` (+ declined list), role `links.achievement_ids` if used, `profile.yaml` progress.
+> **Token budget:** Obey `SKILL.md` → Token-efficient reads & Write budget. Below is stage-specific minimum.
+
+**Read:** `profile.yaml`, `employment/index.yaml` (focus ids + `one_liner`), **one** focus role file at a time, `achievements.yaml` meta only (not full history rescan).
+
+**Write (per turn):** PRIMARY `achievements.yaml` (one item or `declined_or_no_impact` entry). Optional `links.achievement_ids` on active role. Defer `profile.yaml` until stage exit.
 
 ---
 

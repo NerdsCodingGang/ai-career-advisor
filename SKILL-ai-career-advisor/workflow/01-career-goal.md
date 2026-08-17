@@ -77,8 +77,11 @@ Load `workflow/02-career-archaeology.md`.
 
 ## Read / Write
 
-**Read:** `profile.yaml`, `career-goal.yaml`; light source/employment labels if seeded.  
-**Write:** `career-goal.yaml`, `profile.yaml` stage/progress; optional `open-questions` only if a *formed* thread must wait on a clearer target.
+> **Token budget:** Obey `SKILL.md` → Token-efficient reads & Write budget. Below is stage-specific minimum.
+
+**Read:** `profile.yaml`, `career-goal.yaml`; `employment/index.yaml` labels if document-seeded.
+
+**Write (per turn):** PRIMARY `career-goal.yaml`. Defer `profile.yaml` until stage exit (or first field that must persist mid-stage).
 
 ---
 

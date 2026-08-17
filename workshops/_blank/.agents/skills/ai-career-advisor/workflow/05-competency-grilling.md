@@ -78,8 +78,11 @@ Load `workflow/06-skill-verification.md`.
 
 ## Read / Write
 
-**Read:** `profile.yaml`, market hypotheses/priorities, `open-questions.yaml`, `skills.yaml`, only probed employment files.  
-**Write:** skills, role evidence/scope, open-question outcomes, hypothesis flags, `profile.yaml` progress.
+> **Token budget:** Obey `SKILL.md` → Token-efficient reads & Write budget. Below is stage-specific minimum.
+
+**Read:** `profile.yaml`, `market-research.yaml` (`grilling_priorities` + active hypothesis only), `open-questions.yaml` (active thread), **one** probed `employment/<id>.yaml`, **one skill row** in `skills.yaml` (by id — not full file).
+
+**Write (per turn):** PRIMARY `employment/<probed-id>.yaml` (`competency_evidence`, scope if earned). Update **only the active skill row** in `skills.yaml`. Resolve active `open-questions` entry. Defer `profile.yaml` until stage exit.
 
 ---
 

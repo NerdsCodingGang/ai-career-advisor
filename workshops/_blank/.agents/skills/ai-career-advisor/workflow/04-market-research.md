@@ -1,6 +1,8 @@
 # 04 — Market research (competency mirror)
 
 > **Interaction:** This file defines *what evidence to seek*, not a batch job. Obey `SKILL.md` PRIMARY INTERACTION CONTRACT — end discovery turns with ONE question, then STOP.
+>
+> **SHORT mode:** ~**10** included postings (not 15); defer deep related-role sprawl — see `references/workshop-short-mode.md`.
 
 **Not** job search. Live postings exist to form **hypotheses** and better questions about the candidate.
 
@@ -28,9 +30,17 @@ Explain briefly (plain language): looking at offers as a **mirror**, not applyin
 - Current role labels + **target** roles + **related** roles that have reasons in career-goal  
 - No related-role sprawl without reasons
 
-### 3. Sample postings
+### 3. Sample postings (batch — Phase A)
 
-- Aim ~10–15 **included** postings for the scope  
+**Phase A — batch (minimal user chat):**
+
+1. Collect ~10–15 included postings (SHORT: ~10) in one pass  
+2. Extract recurring competencies → `market_skill_base` + `skill_hypotheses`  
+3. Write **`market-research.yaml` once** — do not interleave “find → chat → save → find” per posting  
+
+**Phase B — conversation:** one hypothesis / formed ask per turn (grilling prep).
+
+- Aim ~10–15 **included** postings for the scope (SHORT: ~**10**)  
 - Exclude junk (wrong seniority/scope/domain); record exclusions in `sample_quality`  
 - Never claim “N offers” if half were excluded and untracked
 
@@ -72,8 +82,15 @@ Load `workflow/05-competency-grilling.md`.
 
 ## Read / Write
 
-**Read:** `profile.yaml`, `career-goal.yaml`, employment stories, `skills.yaml`, `market-research.yaml`.  
-**Write:** `market-research.yaml`; careful skills promotions; open-questions for HIGH formed asks; `profile.yaml` progress.
+> **Token budget:** Obey `SKILL.md` → Token-efficient reads & Write budget. Below is stage-specific minimum.
+
+**Read (Phase A batch):** `profile.yaml`, `career-goal.yaml`, `employment/index.yaml` (`one_liner` only — not all role files), `market-research.yaml` if resuming.  
+**Read (Phase B conversation):** above + `market-research.yaml` slice for **one** active hypothesis; **not** full `skills.yaml`.
+
+**Write (Phase A):** `market-research.yaml` only (aggregated `market_skill_base`, hypotheses, `sample_quality`). No per-posting chat turns.  
+**Write (Phase B):** `open-questions.yaml` for one HIGH formed ask; optional single-row `skills.yaml` promotion; `profile.yaml` on stage exit only.
+
+**Storage rule:** `sources.postings[].notes` — max one line (e.g. “Senior QA, fintech, PL”). **Never** paste full JD body into Career Database.
 
 ---
 
@@ -91,3 +108,5 @@ Load `workflow/05-competency-grilling.md`.
 - Research for its own sake / infinite scrolling  
 - Related-role sprawl without reasons  
 - Inflated “we checked 15 offers” without exclusions logged  
+- Pasting full job descriptions into `sources.postings` or chat  
+- One posting per conversation turn (batch first, then hypotheses)  
